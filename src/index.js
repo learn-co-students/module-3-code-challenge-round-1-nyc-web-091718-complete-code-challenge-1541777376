@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     ulComments.innerHTML = listComments(json)
   })
 
-  //Step 2
+  //Step 2/3
   likeButton.addEventListener('click',()=>{
     let curLikes = parseInt(likesTag.innerText)
     likesTag.innerText = ++curLikes
@@ -35,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  //Step 3
+  //Step 4/5
   commentForm.addEventListener("submit",(e)=>{
     e.preventDefault()
     let commentInput = document.getElementById('comment_input').value
-    ulComments.innerHTML += `<li>${commentInput}</li>`
+    ulComments.innerHTML += `<li>${commentInput}<button>Delete</button></li>`
     commentForm.reset()
     fetch(commentsURL,{
       method: "POST",
@@ -50,12 +50,18 @@ document.addEventListener('DOMContentLoaded', () => {
       body: JSON.stringify({image_id:1407,content:commentInput})
     })
   })
+  // Step 6 - First only on front end
+  ulComments.addEventListener('click',(event)=>{
+    if(event.target.localName === "button"){
+      event.target.parentElement.remove()
+    }
+  })
   //Helper Methods
   function listComments(imgObj){
     return imgObj.comments.map((comment)=>listComment(comment)).join('')
   }
   function listComment(com){
-    return `<li>${com.content}</li>`
+    return `<li>${com.content}<button>Delete</button></li>`
   }
 
 

@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
   })
 
-  //Step 4/5
+  //Step 4/5 with bonus response
   commentForm.addEventListener("submit",(e)=>{
     e.preventDefault()
     let commentInput = document.getElementById('comment_input').value
@@ -49,20 +49,31 @@ document.addEventListener('DOMContentLoaded', () => {
       },
       body: JSON.stringify({image_id:1407,content:commentInput})
     })
+    .then(response=>response.json())
+    .then(json=>{
+      document.querySelectorAll('#comments li')[document.querySelectorAll('#comments li').length-1].dataset.id = json.id
+    })
   })
-  // Step 6 - First only on front end
+
+  // Step 6
   ulComments.addEventListener('click',(event)=>{
     if(event.target.localName === "button"){
-      event.target.parentElement.remove()
+      fetch(`https://randopic.herokuapp.com/comments/${event.target.parentElement.dataset.id}`,{
+        method: "DELETE"
+      })
+      .then((response)=>{
+        if(response.ok){
+          event.target.parentElement.remove()
+        }
+      })
     }
   })
+
   //Helper Methods
   function listComments(imgObj){
     return imgObj.comments.map((comment)=>listComment(comment)).join('')
   }
   function listComment(com){
-    return `<li>${com.content}<button>Delete</button></li>`
+    return `<li data-id = "${com.id}">${com.content}<button>Delete</button></li>`
   }
-
-
 })

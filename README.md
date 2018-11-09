@@ -31,7 +31,7 @@ For this challenge it is important to work iteratively, one feature at a time, b
 
 We have provided what we believe to be a good breakdown of how to approach the this problem:
 
-## Step 1 - Get the Image Data
+## Step 1 - Get the Image Data  ###############DONEDONEDONE
 
 When the page loads you will need to make a request to the API to get the data about your picture. The API follows RESTful conventions.
 
@@ -68,10 +68,10 @@ Example Response:
 
 Use the data from the API response to append the information to the DOM. You will need to add:
 
-- the image url
-- the image name
-- the number of likes
-- any comments in an unordered list
+- the image url  DONE
+- the image name DONE
+- the number of likes DONE
+- any comments in an unordered list DONE
 
 Your HTML might look something like this (obviously you'd need to replace `🤔` with the actual data):
 
@@ -101,17 +101,17 @@ Your HTML might look something like this (obviously you'd need to replace `🤔`
 
 (If you cannot get your fetch request to work correctly you can always use the example response above to append content to the DOM and work with for the subsequent steps)
 
-## Step 2 - Like Feature (Frontend)
+## Step 2 - Like Feature (Frontend) DONE
 
-The next feature to approach is the functionality to add likes to a picture. First get this working in the browser only without worrying about persistence.
+The next feature to approach is the functionality to add likes to a picture. First get this working in the browser only without worrying about persistence. DONE
 
-Clicking the 'Like' button should increase the number of likes by one.
+Clicking the 'Like' button should increase the number of likes by one. DONE
 
-A user can like the same picture multiple times.
+A user can like the same picture multiple times. DONE
 
 ---
 
-## Step 3 - Like Feature (Backend)
+## Step 3 - Like Feature (Backend) DONE
 
 This app will use what is called _optimistic rendering_. This means the DOM will be updated before the changes are added to the database. When a user clicks the 'Like' button we will immediately update the DOM. Next your job is to make a POST request to persist the new Like in the backend database.
 
@@ -152,13 +152,15 @@ To test your code you should be able to refresh the page and see the number of l
 
 ---
 
-## Step 4 - Comment Feature (Frontend)
+## Step 4 - Comment Feature (Frontend) DONE
 
 The next feature to approach is the functionality to add comments to a picture. First get this working in the browser only without worrying about persistence.
 
-Filling out the input and clicking 'Submit' should append your new comment as an `<li>` to the comments unordered list element. You should also clear out the comment input, so it's an empty field for the next comment to be added.
+DONE Filling out the input and clicking 'Submit' should append your new comment as an `<li>` to the comments unordered list element.
 
-## Step 5 - Comment Feature (Backend)
+ DONE You should also clear out the comment input, so it's an empty field for the next comment to be added. DONE
+
+## Step 5 - Comment Feature (Backend) DONE
 
 As before, after optimistically rendering a comment we need to persist the comment to the database.
 

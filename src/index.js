@@ -39,7 +39,7 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   function renderSingleCommentLi(comment) {
-    return `<li>${comment.content}</li>`;
+    return `<li>${comment.content}  <button id="${comment.id}" data-action="delete">DELETE</button></li>`;
   }
 
   function imgDivEventHandler(event) {
@@ -55,17 +55,21 @@ document.addEventListener('DOMContentLoaded', () => {
         body: JSON.stringify({image_id: imageId})
       })
     } // end ck for like btn if stmt
+
+    if (event.target.dataset.action === "delete") {
+      let commentId = event.target.id;
+      event.target.parentElement.remove();
+
+      fetch(`${commentsURL}/${commentId}`, {
+        method: 'DELETE'
+      })
+    } // end ck for delete btn if stmt
   } // end imgDivEventHandler fn
 
   function formEventHandler(event) {
     event.preventDefault();
     const inputComment = document.getElementById('comment_input')
     let comment = {image_id: imageId, content: inputComment.value}
-    console.log(theImg);
-    console.log(event.target);
-    console.log(inputComment);
-    console.log(imgCommentsUl);
-    console.log(comment);
     imgCommentsUl.innerHTML += renderSingleCommentLi(comment);
     commentForm.reset();
 
@@ -74,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
       headers: {'Accept': 'application/json', 'Content-Type': 'application/json'},
       body: JSON.stringify(comment)
     })
-
   } // end formEventHandler fn
 
 })

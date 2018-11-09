@@ -94,6 +94,10 @@ function addCommentToServer() {
   })
 }
 
+function deleteCommentFromServer(commentId) {
+  fetch(commentsURL + `/${commentId}`, {method: 'DELETE'})
+}
+
 /************************************************
  Functions to be run AFTER 'DOMContentLoaded' event
 *************************************************/
@@ -142,7 +146,7 @@ function handleCommentsListClick(event) {
   if (event.target.dataset.action === 'delete') {
     let comment = event.target.parentNode
     commentsList.removeChild(comment)
-    // deleteCommentFromServer()
+    deleteCommentFromServer(comment.dataset.commentId)
   }
 }
 

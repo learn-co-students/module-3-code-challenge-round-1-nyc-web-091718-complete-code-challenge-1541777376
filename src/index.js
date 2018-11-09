@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
     submitCommentToDb(content, photoId)
   })
 
-  imageCard.
+
 }) // End of DOMContentLoaded
 
 

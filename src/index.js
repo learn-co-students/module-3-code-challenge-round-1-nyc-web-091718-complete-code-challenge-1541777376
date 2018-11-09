@@ -11,14 +11,12 @@ document.addEventListener('DOMContentLoaded', () => {
   const ulComments = document.getElementById('comments')
   const likeButton = document.getElementById('like_button')
   const commentForm = document.getElementById('comment_form')
+
   //Step 1
   fetch(imageURL)
   .then(response=>response.json())
   .then((json)=>{
-    imageTag.src = json.url;
-    nameTag.innerText = json.name;
-    likesTag.innerText = json.like_count;
-    ulComments.innerHTML = listComments(json)
+    renderImage(json)
   })
 
   //Step 2/3
@@ -70,6 +68,13 @@ document.addEventListener('DOMContentLoaded', () => {
   })
 
   //Helper Methods
+  function renderImage(imgObj){
+    imageTag.src = imgObj.url;
+    imageTag.dataset.id = imgObj.id
+    nameTag.innerText = imgObj.name;
+    likesTag.innerText = imgObj.like_count;
+    ulComments.innerHTML = listComments(imgObj)
+  }
   function listComments(imgObj){
     return imgObj.comments.map((comment)=>listComment(comment)).join('')
   }
